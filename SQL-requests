@@ -1,0 +1,18 @@
+- ЗАПРОС 1
+SELECT c.login, count (o.id)
+FROM couriers c
+INNER JOIN orders o on c.id = o.courierId
+GROUP BY c.login
+WHERE inDelivery=true;
+
+___________________
+
+- ЗАПРОС 2
+SELECT track,
+CASE
+	WHEN finished == true THEN 2
+	WHEN cancelled == true THEN -1
+	WHEN inDelivery == true THEN 1
+	ELSE 0
+END as status
+FROM orders;
